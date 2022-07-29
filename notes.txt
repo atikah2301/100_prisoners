@@ -1,0 +1,30 @@
+dictionary that randomly maps 1 to n boxes to 1 to n slips (key value pairs)
+
+prisoners are numbered 1 to n. 
+all prisoners will follow the strategy of:
+1. start by choosing the box with their number k 
+2. then choose the box with the same number as the slip in the previous box
+3. repeat until 
+	you end up finding the slip k which leads you back to the first box k (success)
+	OR
+	you have checked n/2 boxes (failure)
+4. if you failed, stop the experiment, since the experiment is a failure.
+5. repeat for each prisoner until 
+	one prisoner fails
+	OR
+	all prisoners succeed
+6. if all n prisoners succeed, then the experiment is a success.
+
+there are n! mappings, but for each mapping there are n which are identical "chains" of mappings when you considere the loop strategy. so this gives n!/n = (n-1)! ways for a chain of length n to form. 
+
+the loop strategy derives a partitioning for the set of all boxes/slips i.e. a set of subsets of the boxes whose union forms the parent set and whose intersection is the empty set.
+
+we want to know 
+probability that the largest of these subsets has cardinality 50
+= P(L<=50)
+= probability of all prisoners being able to find their slip in 50 tries or less
+= probability of having a successful episode.
+
+if there are n boxes and n slips, then the probability of there being a chain of maximum length k, i.e. P(L=k) is 1/k
+so, P(L<=l) = sum of all 1/k for k=1 to k=l, which can be thought of as an integral of 1/k with respect to k, bounded from 1 to l. this is simply ln(x) for x>=`1
+
